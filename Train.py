@@ -77,7 +77,7 @@ def save_checkpoint(state, filename = 'my_checkpoint.pth.tar'):
     print("Saving Checkpoint")
     torch.save(state, filename)
 
-def load_checkpoint(checkpoint):
+def load_checkpoint(checkpoint,model,optimizer):
     model.eval()
     print('Loading Checkpoint')
     model.load_state_dict(checkpoint['state_dict'])
@@ -197,7 +197,7 @@ scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, patience= 5, v
 
 #loading model
 if load_model:
-    load_checkpoint(torch.load('my_checkpoint.pth.tar'))
+    load_checkpoint(torch.load('my_checkpoint.pth.tar'), model, optimizer)
 
 # time
 start_time = time.time()
